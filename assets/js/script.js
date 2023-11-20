@@ -3,56 +3,56 @@ var apiKey = "your_api_key_here"; // Replace with your actual API key
 
 // Function to get weather data from the OpenWeatherMap API
 function getWeather(city) {
-  // Construct the query URL
-  var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
+    // Construct the query URL
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
 
-  // Make the API call using Fetch API
-  fetch(queryURL)
-    .then(function (response) {
-      // Check if the request was successful
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      // Parse the JSON response
-      return response.json();
-    })
-    .then(function (data) {
-      // Handle the API response
-      displayWeather(data);
-    })
-    .catch(function (error) {
-      console.error('There was a problem with the fetch operation:', error);
-    });
+    // Make the API call using Fetch API
+    fetch(queryURL)
+        .then(function (response) {
+            // Check if the request was successful
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            // Parse the JSON response
+            return response.json();
+        })
+        .then(function (data) {
+            // Handle the API response
+            displayWeather(data);
+        })
+        .catch(function (error) {
+            console.error('There was a problem with the fetch operation:', error);
+        });
 }
 
 // Function to display the weather information on the page
 function displayWeather(data) {
-  // Extract relevant data from the API response
-  const city = data.city.name;
-  const currentDate = dayjs().format('MM/DD/YYYY');
-  const iconCode = data.list[0].weather[0].icon;
-  const temperature = data.list[0].main.temp;
-  const humidity = data.list[0].main.humidity;
-  const windSpeed = data.list[0].wind.speed;
+    // Extract relevant data from the API response
+    const city = data.city.name;
+    const currentDate = dayjs().format('MM/DD/YYYY');
+    const iconCode = data.list[0].weather[0].icon;
+    const temperature = data.list[0].main.temp;
+    const humidity = data.list[0].main.humidity;
+    const windSpeed = data.list[0].wind.speed;
 
-  // Display current weather information
-  const currentWeatherHTML = `
+    // Display current weather information
+    const currentWeatherHTML = `
     <h2>${city} (${currentDate}) <img src="http://openweathermap.org/img/w/${iconCode}.png" alt="Weather icon"></h2>
     <p>Temperature: ${temperature} °F</p>
     <p>Humidity: ${humidity}%</p>
     <p>Wind Speed: ${windSpeed} MPH</p>
   `;
 
-  $('#today').html(currentWeatherHTML);
+    $('#today').html(currentWeatherHTML);
 
-  // Display 5-day forecast
-  const forecastHTML = data.list.slice(1, 6).map((forecast) => {
-    const date = dayjs(forecast.dt_txt).format('MM/DD/YYYY');
-    const forecastIcon = forecast.weather[0].icon;
-    const forecastTemperature = forecast.main.temp;
-    const forecastHumidity = forecast.main.humidity;
+    // Display 5-day forecast
+    const forecastHTML = data.list.slice(1, 6).map((forecast) => {
+        const date = dayjs(forecast.dt_txt).format('MM/DD/YYYY');
+        const forecastIcon = forecast.weather[0].icon;
+        const forecastTemperature = forecast.main.temp;
+        const forecastHumidity = forecast.main.humidity;
 
-    return `
+        return `
       <div class="col-md-2">
         <div class="card">
           <div class="card-body">
@@ -64,39 +64,39 @@ function displayWeather(data) {
         </div>
       </div>
     `;
-  });
+    });
 
-  $('#forecast').html(forecastHTML);
+    $('#forecast').html(forecastHTML);
 }
 
 // Event listener for the search form
 $('#search-form').on('submit', function (event) {
-  event.preventDefault();
+    event.preventDefault();
 
-  // Get the value from the search input
-  const city = $('#search-input').val().trim();
+    // Get the value from the search input
+    const city = $('#search-input').val().trim();
 
-  if (city) {
-    // Call the getWeather function with the city
-    getWeather(city);
+    if (city) {
+        // Call the getWeather function with the city
+        getWeather(city);
 
-    // Add the city to the search history
-    addToHistory(city);
+        // Add the city to the search history
+        addToHistory(city);
 
-    // Clear the search input
-    $('#search-input').val('');
-  }
+        // Clear the search input
+        $('#search-input').val('');
+    }
 });
 
 // Function to add a city to the search history
 function addToHistory(city) {
-  const historyItem = `<button class="list-group-item" data-city="${city}">${city}</button>`;
-  $('#history').prepend(historyItem);
+    const historyItem = `<button class="list-group-item" data-city="${city}">${city}</button>`;
+    $('#history').prepend(historyItem);
 
-  // Add click event to history items
-  $(`[data-city="${city}"]`).on('click', function () {
-    // Get the city from the data attribute and call getWeather
-    const selectedCity = $(this).data('city');
-    getWeather(selectedCity);
-  });
+    // Add click event to history items
+    $(`[data-city="${city}"]`).on('click', function () {
+        // Get the city from the data attribute and call getWeather
+        const selectedCity = $(this).data('city');
+        getWeather(selectedCity);
+    });
 }
