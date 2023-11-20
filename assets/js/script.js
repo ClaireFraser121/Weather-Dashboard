@@ -58,7 +58,7 @@ function displayWeather(data) {
           <div class="card-body">
             <h5>${date}</h5>
             <img src="http://openweathermap.org/img/w/${forecastIcon}.png" alt="Weather icon">
-            <p>Temp: ${forecastTemperature} °F</p>
+            <p>Temp: ${forecastTemperature} °C</p>
             <p>Humidity: ${forecastHumidity}%</p>
           </div>
         </div>
@@ -67,37 +67,36 @@ function displayWeather(data) {
   });
 
   $('#forecast').html(forecastHTML);
-
 }
 
 // Event listener for the search form
 $('#search-form').on('submit', function (event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    // Get the value from the search input
-    const city = $('#search-input').val().trim();
+  // Get the value from the search input
+  const city = $('#search-input').val().trim();
 
-    if (city) {
-        // Call the getWeather function with the city
-        getWeather(city);
+  if (city) {
+    // Call the getWeather function with the city
+    getWeather(city);
 
-        // Add the city to the search history
-        addToHistory(city);
+    // Add the city to the search history
+    addToHistory(city);
 
-        // Clear the search input
-        $('#search-input').val('');
-    }
+    // Clear the search input
+    $('#search-input').val('');
+  }
 });
 
 // Function to add a city to the search history
 function addToHistory(city) {
-    const historyItem = '<button class="list-group-item" data-city=">${city}</button>';
-    $('#history').prepend(historyItem);
+  const historyItem = `<button class="list-group-item" data-city="${city}">${city}</button>`;
+  $('#history').prepend(historyItem);
 
-    // Add click event to history items
-    $('[data-city="${city}"]').on('click', function () {
-        // Get the city from the data attribute and call getWeather
-        const selectedCity = $(this).data('city');
-        getWeather(selectedCity);
-    });
+  // Add click event to history items
+  $(`[data-city="${city}"]`).on('click', function () {
+    // Get the city from the data attribute and call getWeather
+    const selectedCity = $(this).data('city');
+    getWeather(selectedCity);
+  });
 }
