@@ -1,0 +1,97 @@
+/* Reset styles */
+body,
+h1,
+h2,
+h3,
+p,
+figure,
+blockquote,
+dl,
+dd,
+ul,
+ol,
+li,
+fieldset,
+legend,
+button,
+input,
+select,
+textarea {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+}
+
+/* Global styles */
+.container-fluid {
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.weather-header {
+  background-color: #343a40;
+}
+
+.weather-header h1 {
+  font-size: 24px;
+  margin: 0;
+  padding: 10px 0;
+}
+
+/* Search form styles */
+.form {
+  margin-top: 20px;
+}
+
+.weather-search {
+  width: 70%;
+}
+
+.search-button {
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.weather-hr {
+  border-top: 1px solid #ddd;
+}
+
+/* History and Results styles */
+.col-lg-3 {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.list-group {
+  margin-top: 20px;
+}
+
+.list-group-item {
+  cursor: pointer;
+}
+
+/* Today and Forecast styles */
+.col-lg-9 {
+  padding: 20px;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .weather-search {
+    width: 100%;
+  }
+
+  .col-lg-3,
+  .col-lg-9 {
+    padding: 10px;
+  }
+}
