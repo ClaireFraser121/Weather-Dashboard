@@ -1,5 +1,10 @@
 // Request an API key and create a variable to store it
-var apiKey = "your_api_key_here"; // Replace with your actual API key
+var apiKey = "776f1e0638cfcbcdf067e7f5b06f2e07"; // Replace with your actual API key
+
+// Function to convert Kelvin to Celsius
+function convertToCelsius(kelvin) {
+    return kelvin - 273.15;
+}
 
 // Function to get weather data from the OpenWeatherMap API
 function getWeather(city) {
@@ -34,37 +39,41 @@ function displayWeather(data) {
     const temperature = data.list[0].main.temp;
     const humidity = data.list[0].main.humidity;
     const windSpeed = data.list[0].wind.speed;
+    const temperatureCelsius = convertToCelsius(temperature);
+
 
     // Display current weather information
-    const currentWeatherHTML = `
-    <h2>${city} (${currentDate}) <img src="http://openweathermap.org/img/w/${iconCode}.png" alt="Weather icon"></h2>
-    <p>Temperature: ${temperature} °F</p>
-    <p>Humidity: ${humidity}%</p>
-    <p>Wind Speed: ${windSpeed} MPH</p>
-  `;
+const currentWeatherHTML = `
+<h2>${city} (${currentDate}) <img src="http://openweathermap.org/img/w/${iconCode}.png" alt="Weather icon"></h2>
+<p>Temperature: ${temperatureCelsius.toFixed(2)} °C</p>
+<p>Humidity: ${humidity}%</p>
+<p>Wind Speed: ${windSpeed} MPH</p>
+`;
 
-    $('#today').html(currentWeatherHTML);
+$('#today').html(currentWeatherHTML);
+
 
     // Display 5-day forecast
     const forecastHTML = data.list.slice(1, 6).map((forecast) => {
         const date = dayjs(forecast.dt_txt).format('MM/DD/YYYY');
         const forecastIcon = forecast.weather[0].icon;
-        const forecastTemperature = forecast.main.temp;
+        const forecastTemperatureCelsius = convertToCelsius(forecast.main.temp);
         const forecastHumidity = forecast.main.humidity;
+      
 
         return `
-      <div class="col-md-2">
-        <div class="card">
-          <div class="card-body">
-            <h5>${date}</h5>
-            <img src="http://openweathermap.org/img/w/${forecastIcon}.png" alt="Weather icon">
-            <p>Temp: ${forecastTemperature} °C</p>
-            <p>Humidity: ${forecastHumidity}%</p>
-          </div>
-        </div>
-      </div>
-    `;
-    });
+                <div class="col-md-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>${date}</h5>
+                            <img src="http://openweathermap.org/img/w/${forecastIcon}.png" alt="Weather icon">
+                            <p>Temp: ${forecastTemperatureCelsius.toFixed(2)} °C</p>
+                            <p>Humidity: ${forecastHumidity}%</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
 
     $('#forecast').html(forecastHTML);
 }
