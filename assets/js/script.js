@@ -31,10 +31,20 @@ function displayWeather(data) {
     const humidity = data.list[0].main.humidity;
     const windSpeed = data.list[0].wind.speed;
 
-    // Display current weather information
-    const currentWeatherHTML = `
-    <h2>${city} (${currentDate}) <img src="http://openweathermap.org/img/w/${iconCode}.png" alt="Weather icon"></h2>
-    <p>Temperature: ${temperature} °C</p>
-    <p>Wind Speed: ${}'
+   // Display current weather information
+  const currentWeatherHTML = `
+  <h2>${city} (${currentDate}) <img src="http://openweathermap.org/img/w/${iconCode}.png" alt="Weather icon"></h2>
+  <p>Temperature: ${temperature} °C</p>
+  <p>Humidity: ${humidity}%</p>
+  <p>Wind Speed: ${windSpeed} MPH</p>
+`;
 
-}
+$('#today').html(currentWeatherHTML);
+
+// Display 5-day forcast
+const forecastHTML = data.list.slice(1, 6).map((forecast) => {
+const date = dayjs(forecast.dt_txt).format('MM/DD/YYYY');
+const forcastIcon = forecast.weather[0].icon;
+const forcastTemperature = forecast.main.temp;
+const forcastHumidity = forecast.main.humidity;
+});
