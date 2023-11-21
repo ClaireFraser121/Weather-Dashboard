@@ -23,22 +23,25 @@ textarea {
 
 body {
   font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
 }
 
 /* Global styles */
 .container-fluid {
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 20px;
 }
 
 .weather-header {
   background-color: #343a40;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
 }
 
 .weather-header h1 {
-  font-size: 24px;
+  font-size: 36px;
   margin: 0;
-  padding: 10px 0;
 }
 
 /* Search form styles */
@@ -48,21 +51,28 @@ body {
 
 .weather-search {
   width: 70%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
 }
 
 .search-button {
   background-color: #007bff;
   color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
 }
 
 .weather-hr {
   border-top: 1px solid #ddd;
+  margin: 20px 0;
 }
 
 /* History and Results styles */
 .col-lg-3 {
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   padding: 20px;
   border-radius: 5px;
 }
@@ -73,6 +83,18 @@ body {
 
 .list-group-item {
   cursor: pointer;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  background-color: #ffffff;
+  padding: 10px;
+}
+
+.list-group-item:last-child {
+  border-bottom: none;
+}
+
+.list-group-item:hover {
+  background-color: #f8f9fa;
 }
 
 /* Today and Forecast styles */
@@ -82,6 +104,13 @@ body {
 
 .card {
   margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 20px;
 }
 
 /* Responsive styles */
