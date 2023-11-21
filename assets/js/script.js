@@ -43,39 +43,39 @@ function displayWeather(data) {
 
 
     // Display current weather information
-const currentWeatherHTML = `
+    const currentWeatherHTML = `
 <h2>${city} (${currentDate}) <img src="http://openweathermap.org/img/w/${iconCode}.png" alt="Weather icon"></h2>
 <p>Temperature: ${temperatureCelsius.toFixed(2)} °C</p>
-<p>Humidity: ${humidity}%</p>
-<p>Wind Speed: ${windSpeed} MPH</p>
+<p>Humidity: ${data.list[0].main.humidity}%</p>
+<p>Wind Speed: ${data.list[0].wind.speed} MPH</p>
 `;
 
-$('#today').html(currentWeatherHTML);
+    $('#today').html(currentWeatherHTML);
 
 
-    // Display 5-day forecast
-    const forecastHTML = data.list.slice(1, 6).map((forecast) => {
-        const date = dayjs(forecast.dt_txt).format('MM/DD/YYYY');
-        const forecastIcon = forecast.weather[0].icon;
-        const forecastTemperatureCelsius = convertToCelsius(forecast.main.temp);
-        const forecastHumidity = forecast.main.humidity;
-      
+   // Display 5-day forecast
+const forecastHTML = data.list.filter(entry => entry.dt_txt.includes('12:00:00')).map((forecast) => {
+    const date = dayjs(forecast.dt_txt).format('MM/DD/YYYY');
+    const forecastIcon = forecast.weather[0].icon;
+    const forecastTemperatureCelsius = convertToCelsius(forecast.main.temp);
+    const forecastHumidity = forecast.main.humidity;
 
-        return `
-                <div class="col-md-2">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>${date}</h5>
-                            <img src="http://openweathermap.org/img/w/${forecastIcon}.png" alt="Weather icon">
-                            <p>Temp: ${forecastTemperatureCelsius.toFixed(2)} °C</p>
-                            <p>Humidity: ${forecastHumidity}%</p>
-                        </div>
-                    </div>
-                </div>
-            `;
-        });
+    return `
+        <div class="col-md-2">
+          <div class="card">
+            <div class="card-body">
+              <h5>${date}</h5>
+              <img src="http://openweathermap.org/img/w/${forecastIcon}.png" alt="Weather icon">
+              <p>Temp: ${forecastTemperatureCelsius.toFixed(2)} °C</p>
+              <p>Humidity: ${forecastHumidity}%</p>
+            </div>
+          </div>
+        </div>
+    `;
+});
 
-    $('#forecast').html(forecastHTML);
+$('#forecast').html(forecastHTML);
+
 }
 
 // Event listener for the search form
