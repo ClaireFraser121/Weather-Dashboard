@@ -33,7 +33,7 @@ body {
 }
 
 .weather-header {
-    background-color: #343a40;
+    background: linear-gradient(to right, #0073e6, #001e4f);
     color: #ffffff;
     text-align: center;
     padding: 20px;
@@ -54,6 +54,7 @@ body {
     padding: 10px;
     border: 1px solid #ced4da;
     border-radius: 5px;
+    margin-bottom: 10px;
 }
 
 .search-button {
@@ -63,6 +64,7 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 5px;
 }
 
 .weather-hr {
@@ -83,19 +85,19 @@ body {
 
 .list-group-item {
     cursor: pointer;
-    border: none;
-    border-bottom: 1px solid #ddd;
-    background-color: #ffffff;
-    padding: 10px;
-}
-
-.list-group-item:last-child {
+    border: 1px solid #ddd; /* Add border */
+    background-color: #f8f9fa; /* Add background color */
+    padding: 10px; /* Add padding */
+    margin-bottom: 5px;
+  }
+  
+  .list-group-item:last-child {
     border-bottom: none;
-}
-
-.list-group-item:hover {
-    background-color: #f8f9fa;
-}
+  }
+  
+  .list-group-item:hover {
+    background-color: #e9ecef; /* Change background color on hover */
+  }
 
 /* Today and Forecast styles */
 .col-lg-9 {
