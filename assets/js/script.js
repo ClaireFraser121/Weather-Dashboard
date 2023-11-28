@@ -34,7 +34,7 @@ function getWeather(city) {
 function displayWeather(data) {
     // Extract relevant data from the API response
     const city = data.city.name;
-    const currentDate = dayjs().format('MM/DD/YYYY');
+    const currentDate = dayjs().format('DD/MM/YYYY');
     const iconCode = data.list[0].weather[0].icon;
     const temperature = data.list[0].main.temp;
     const humidity = data.list[0].main.humidity;
@@ -58,7 +58,7 @@ function displayWeather(data) {
     // Display 5-day forecast
     // Adjust the HTML structure for the forecast cards to display date, temperature, and humidity on separate lines
 const forecastHTML = data.list.filter(entry => entry.dt_txt.includes('12:00:00')).map((forecast) => {
-    const date = dayjs(forecast.dt_txt).format('MM/DD/YYYY');
+    const date = dayjs(forecast.dt_txt).format('DD/MM/YYYY');
     const forecastIcon = forecast.weather[0].icon;
     const forecastTemperatureCelsius = convertToCelsius(forecast.main.temp);
     const forecastHumidity = forecast.main.humidity;

@@ -36,10 +36,12 @@ The Weather Dashboard is perfect for:
 - Monitoring the weather in multiple cities for business or personal reasons.
 
 ## Screenshots
-<!-- Include screenshots or GIFs of your application. -->
+
+![Weather Dashboard](./assets/images/Weather%20Dashboard.pptx)
 
 ## Demo
-<!-- Provide a link to a live demo of your application. -->
+
+<https://clairefraser121.github.io/Weather-Dashboard/>
 
 ## Credits
 
@@ -52,7 +54,8 @@ The Weather Dashboard is perfect for:
 This project is licensed under the [MIT License](LICENSE).
 
 ## Badges
-<!-- Include any badges you want to showcase (e.g., build status, version, etc.). -->
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Conclusion
 
