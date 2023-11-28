@@ -1,22 +1,5 @@
 /* Reset styles */
-body,
-h1,
-h2,
-h3,
-p,
-figure,
-blockquote,
-dl,
-dd,
-ul,
-ol,
-li,
-fieldset,
-legend,
-button,
-input,
-select,
-textarea {
+body, h1, h2, h3, p, figure, blockquote, dl, dd, ul, ol, li, fieldset, legend, button, input, select, textarea {
     margin: 0;
     padding: 0;
 }
@@ -32,6 +15,7 @@ body {
     padding: 20px;
 }
 
+/* Header styles */
 .weather-header {
     background: linear-gradient(to right, #0073e6, #001e4f);
     color: #ffffff;
@@ -89,15 +73,15 @@ body {
     background-color: #f8f9fa; /* Add background color */
     padding: 10px; /* Add padding */
     margin-bottom: 5px;
-  }
-  
-  .list-group-item:last-child {
+}
+
+.list-group-item:last-child {
     border-bottom: none;
-  }
-  
-  .list-group-item:hover {
+}
+
+.list-group-item:hover {
     background-color: #e9ecef; /* Change background color on hover */
-  }
+}
 
 /* Today and Forecast styles */
 .col-lg-9 {
@@ -113,6 +97,7 @@ body {
 
 .card-body {
     padding: 20px;
+    padding-right: 55px;
 }
 
 /* Responsive styles */
@@ -121,9 +106,9 @@ body {
         width: 100%;
     }
 
-    .col-lg-3,
-    .col-lg-9 {
+    .col-lg-3, .col-lg-9 {
         padding: 10px;
+        padding-right: 55px;
     }
 }
 
@@ -131,10 +116,23 @@ body {
 #forecast {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
+    margin-top: 20px;
 }
 
 .col-md-2 {
-    flex: 0 0 20%;
-    /* Adjust width based on your preference */
+    flex: 0 0 calc(35% - 20px);
+    margin-bottom: 20px;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.col-md-2 .card-body {
+    padding: 15px;
+    background-color: #001e4f;
+}
+
+.col-md-2 h5, .col-md-2 p {
+    margin-bottom: 10px;
 }

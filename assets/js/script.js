@@ -56,31 +56,32 @@ function displayWeather(data) {
     $('#today').html(currentWeatherHTML);
 
     // Display 5-day forecast
-    const forecastHTML = data.list.filter(entry => entry.dt_txt.includes('12:00:00')).map((forecast) => {
-        const date = dayjs(forecast.dt_txt).format('MM/DD/YYYY');
-        const forecastIcon = forecast.weather[0].icon;
-        const forecastTemperatureCelsius = convertToCelsius(forecast.main.temp);
-        const forecastHumidity = forecast.main.humidity;
+    // Adjust the HTML structure for the forecast cards to display date, temperature, and humidity on separate lines
+const forecastHTML = data.list.filter(entry => entry.dt_txt.includes('12:00:00')).map((forecast) => {
+    const date = dayjs(forecast.dt_txt).format('MM/DD/YYYY');
+    const forecastIcon = forecast.weather[0].icon;
+    const forecastTemperatureCelsius = convertToCelsius(forecast.main.temp);
+    const forecastHumidity = forecast.main.humidity;
 
-        return `
-        <div class="col-md-2">
-          <div class="card">
+    return `
+    <div class="col-md-2">
+        <div class="card">
             <div class="card-body">
-              <h5>${date}</h5>
-              <img src="http://openweathermap.org/img/w/${forecastIcon}.png" alt="Weather icon">
-              <p>Temp: ${forecastTemperatureCelsius.toFixed(2)} °C</p>
-              <p>Humidity: ${forecastHumidity}%</p>
+                <h5>${date}</h5>
+                <img src="http://openweathermap.org/img/w/${forecastIcon}.png" alt="Weather icon">
+                <p>Temp: ${forecastTemperatureCelsius.toFixed(2)} °C</p>
+                <p>Humidity: ${forecastHumidity}%</p>
             </div>
-          </div>
         </div>
-      `;
-    });
+    </div>
+    `;
+});
 
-    $('#forecast').html(forecastHTML);
+$('#forecast').html(forecastHTML);
 }
 
 // Event listener for the search form
-$('#search-form').on('submit', function (event) {
+$('#search-form').on('submit', function g(event) {
     event.preventDefault();
 
     // Get the value from the search input
@@ -100,13 +101,16 @@ $('#search-form').on('submit', function (event) {
 
 // Function to add a city to the search history
 function addToHistory(city) {
-    const historyItem = `<button class="list-group-item" data-city="${city}">${city}</button>`;
-    $('#history').prepend(historyItem);
+  // Check if the city is already in the history
+  if (!$(`[data-city="${city}"]`).length) {
+      const historyItem = `<button class="list-group-item" data-city="${city}">${city}</button>`;
+      $('#history').prepend(historyItem);
 
-    // Add click event to history items
-    $(`[data-city="${city}"]`).on('click', function () {
-        // Get the city from the data attribute and call getWeather
-        const selectedCity = $(this).data('city');
-        getWeather(selectedCity);
-    });
+      // Add click event to history items
+      $(`[data-city="${city}"]`).on('click', function () {
+          // Get the city from the data attribute and call getWeather
+          const selectedCity = $(this).data('city');
+          getWeather(selectedCity);
+      });
+  }
 }
