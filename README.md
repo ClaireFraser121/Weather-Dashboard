@@ -43,6 +43,8 @@ The Weather Dashboard is perfect for:
 
 <https://clairefraser121.github.io/Weather-Dashboard/>
 
+<https://github.com/ClaireFraser121/Weather-Dashboard>
+
 ## Credits
 
 - [OpenWeatherMap](https://openweathermap.org/) - Weather data API.
