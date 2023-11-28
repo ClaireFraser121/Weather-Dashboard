@@ -37,7 +37,7 @@ The Weather Dashboard is perfect for:
 
 ## Screenshots
 
-![Weather Dashboard](./assets/images/Weather%20Dashboard.pptx)
+![Weather Dashboard](./assets/images/weather-dashboard.png)
 
 ## Demo
 
